@@ -6,7 +6,8 @@ public class PhysicsEngine : MonoBehaviour {
 	public float mass;
 	public Vector3 velocityVector; // average velocity this FixedUpdate()
 	public Vector3 netForceVector;
-	public List<Vector3>forceVectorList = new List<Vector3>();
+
+	private List<Vector3>forceVectorList = new List<Vector3>();
 
 	void Start () 
 	{
@@ -15,31 +16,29 @@ public class PhysicsEngine : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
-		SumForces();
 		RenderTrails();
+
 		UpdatePosition();
 
 	}
 
-	public void AddForce(){
-	  
+	public void AddForce(Vector3 forceVector){
+		forceVectorList.Add(forceVector);
 	}
-
-	void SumForces()
+		
+	void UpdatePosition()
 	{
+		// Sum the Forces and Clear the List
 		netForceVector = Vector3.zero;
-
 		foreach(Vector3 forceVector in forceVectorList){
 			netForceVector += forceVector;
 		}
-	}
+		forceVectorList = new List<Vector3>(); // clear the list
 
-	void UpdatePosition()
-	{
+		// Calculate position change due to net force
 		Vector3 accelerationVector = netForceVector/mass;
 		velocityVector+=accelerationVector * Time.deltaTime;
 		transform.position += velocityVector * Time.deltaTime;
-
 	}
 
 	/// <summary>
@@ -51,7 +50,7 @@ public class PhysicsEngine : MonoBehaviour {
 	private int numberOfForces;
 
 	// Use this for initialization
-	void SetupThrustTrails () {
+	void SetupThrustTrails() {
 		lineRenderer = gameObject.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
 		lineRenderer.SetColors(Color.yellow, Color.yellow);
@@ -60,7 +59,7 @@ public class PhysicsEngine : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void RenderTrails () {
+	void RenderTrails() {
 		if (showTrails) {
 			lineRenderer.enabled = true;
 			numberOfForces = forceVectorList.Count;
