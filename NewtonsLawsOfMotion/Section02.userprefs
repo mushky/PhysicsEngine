@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../.Trash/Scripts/DrawForces.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PhysicsEngine.cs">
     <Files>
-      <File FileName="../../../.Trash/Scripts/DrawForces.cs" Line="15" Column="5" />
+      <File FileName="Assets/Scripts/AddForce.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PhysicsEngine.cs" Line="21" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
