@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PhysicsEngine : MonoBehaviour {
-	public float mass;
-	public Vector3 velocityVector; // average velocity this FixedUpdate()
-	public Vector3 netForceVector;
+	public float mass;  // kg
+
+	public Vector3 velocityVector; // [m s^-1]
+	public Vector3 netForceVector; // N [kg m s^-2]
 
 	private List<Vector3>forceVectorList = new List<Vector3>();
 
@@ -17,13 +18,12 @@ public class PhysicsEngine : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		RenderTrails();
-
 		UpdatePosition();
-
 	}
 
 	public void AddForce(Vector3 forceVector){
 		forceVectorList.Add(forceVector);
+		Debug.Log("Adding Forces " + forceVector + " to " + gameObject.name);
 	}
 		
 	void UpdatePosition()
